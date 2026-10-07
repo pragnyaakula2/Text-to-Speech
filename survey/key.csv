@@ -1,0 +1,7 @@
+clip,set,model
+clip1,seen,seq2seq
+clip2,unseen,svr
+clip3,unseen,seq2seq
+clip4,seen,svr
+clip5,unseen,nn
+clip6,seen,nn

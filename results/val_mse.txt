@@ -1,0 +1,3 @@
+nn	0.003269	baseline 0.003046
+svr	0.003232	baseline 0.003046
+seq2seq	0.003436	baseline 0.003046
