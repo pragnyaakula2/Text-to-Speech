@@ -1,8 +1,12 @@
 # End-to-End Text-to-Speech Synthesis (UE24CS352A Mini-Project)
 
+Akula Pragnya (PES1UG24AM028) · Akshata Amara (PES1UG24AM025)
+UE24CS352A Machine Learning — Mini-Project · October 2026
+
 Replication of *End-to-End Text to Speech Synthesis* (CS 229, Stanford, Autumn 2018):
 text -> spectrogram with three models (SVR, simple neural net, seq2seq + attention),
-then spectrogram -> wav.
+then spectrogram -> wav. See `TTS_Mini_Project_Report.pdf` for the full write-up and
+`TTS_Project_Overview.pptx` for the presentation.
 
 ## Setup
 
@@ -45,3 +49,17 @@ Training loss curves and held-out MSE are written to `results/`.
 - Griffin-Lim is used for phase reconstruction (only magnitudes are predicted).
 - SVR predicts 32 PCA components per timestep instead of 1025 outputs per timestep (training time).
 - Clips are limited to 3.5 s / 50 characters so all models train on a laptop.
+
+## Results
+
+10 held-out sentences, log-magnitude spectrograms scaled to [0,1]:
+
+| Model                                | Final train loss | Validation MSE | Training time |
+|---------------------------------------|-------------------|------------------|----------------|
+| Mean-spectrogram baseline             | 0.00361           | 0.00305          | –              |
+| SVR (polynomial kernel, PCA 32)       | 0.00218           | 0.00323          | 22 s           |
+| Neural network (200 epochs)           | 0.00050           | 0.00327          | 608 s          |
+| Seq2seq with attention (150 epochs)   | 0.00105           | 0.00344          | 4,640 s        |
+
+All three models are slightly worse than the trivial mean-spectrogram baseline on
+held-out validation MSE; see `TTS_Mini_Project_Report.pdf` for analysis.
